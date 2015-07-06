@@ -8,7 +8,5 @@ This is the implementations of well know Myanmar Input Methods for Emacs. Those 
 ## Installation
 * Add `*.el` files to `load-path`
 * Byte-compile `*.el` (optional)
-* Add the following to .emacs file
-        (require 'input-method-name)
-* Select default input method (optional)
-        (set-input-method 'input-method-name)
+* Add the following to .emacs file `(require 'input-method-name)`
+* Select default input method (optional) `(set-input-method 'input-method-name)`
