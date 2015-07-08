@@ -20,9 +20,7 @@
 ;; GNU General Public License for more details.
 
 ;; You should have received a copy of the GNU General Public License
-;; along with GNU Emacs; see the file COPYING.  If not, write to
-;; the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-;; Boston, MA 02111-1307, USA.
+;; along with GNU Emacs.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
 
@@ -57,84 +55,144 @@
  nil
  t
  )
-(quail-define-rules
- ("1" ["၁"])
- ("2" ["၂"])
- ("3" ["၃"])
- ("4" ["၄"])
- ("5" ["၅"])
- ("6" ["၆"])
- ("7" ["၇"])
- ("8" ["၈"])
- ("9" ["၉"])
- ("0" ["၀"])
- ("q" ["ဆ"])
- ("w" ["တ"])
- ("e" ["န"])
- ("r" ["မ"])
- ("t" ["အ"])
- ("y" ["ပ"])
- ("u" ["က"])
- ("i" ["င"])
- ("o" ["သ"])
- ("p" ["စ"])
- ("[" ["ဟ"])
- ("]" ["ဩ"])
- ("\\" ["၏"])
- ("a" ["ေ"])
- ("s" ["ျ"])
- ("d" ["ိ"])
- ("f" ["်"])
- ("g" ["ါ"])
- ("h" ["့"])
- ("j" ["ြ"])
- ("k" ["ု"])
- ("l" ["ူ"])
- (";" ["း"])
- ("z" ["ဖ"])
- ("x" ["ထ"])
- ("c" ["ခ"])
- ("v" ["လ"])
- ("b" ["ဘ"])
- ("n" ["ည"])
- ("m" ["ာ"])
- ("," ["ယ"])
- ("/" ["။"])
- ("~" ["ဎ"])
- ("!" ["ဍ"])
- ("@" ["ဏ္ဍ"])
- ("#" ["ဋ"])
- ("^" ["/"])
- ("&" ["ရ"])
- ("*" ["ဂ"])
- ("_" ["×"])
- ("Q" ["ဈ"])
- ("W" ["ဝ"])
- ("E" ["ဣ"])
- ("R" ["၎င်း"])
- ("T" ["ဤ"])
- ("Y" ["၌"])
- ("U" ["ဥ"])
- ("I" ["၍"])
- ("O" ["ဿ"])
- ("P" ["ဏ"])
- ("{" ["ဧ"])
- ("}" ["ဪ"])
- ("|" ["ဋ္ဌ"])
- ("A" ["ဗ"])
- ("S" ["ှ"])
- ("D" ["ီ"])
- ("F" ["္"])
- ("G" ["ွ"])
- ("H" ["ံ"])
- ("J" ["ဲ"])
- ("K" ["ဒ"])
- ("L" ["ဓ"])
- ("Z" ["ဇ"])
- ("X" ["ဌ"])
- ("C" ["ဃ"])
- ("V" ["ဠ"])
- ("N" ["ဉ"])
- ("M" ["ဦ"])
- ("?" ["၊"])
-)
+
+(defconst myanmar-consonants
+ '(
+   ("u" . "က")
+   ("c" . "ခ")
+   ("*" . "ဂ")
+   ("C" . "ဃ")
+   ("i" . "င")
+   ("p" . "စ")
+   ("q" . "ဆ")
+   ("Z" . "ဇ")
+   ("Q" . "ဈ")
+   ("n" . "ည")
+   ("N" . "ဉ")
+   ("#" . "ဋ")
+   ("X" . "ဌ")
+   ("!" . "ဍ")
+   ("~" . "ဎ")
+   ("P" . "ဏ")
+   ("w" . "တ")
+   ("x" . "ထ")
+   ("K" . "ဒ")
+   ("L" . "ဓ")
+   ("e" . "န")
+   ("y" . "ပ")
+   ("z" . "ဖ")
+   ("A" . "ဗ")
+   ("b" . "ဘ")
+   ("r" . "မ")
+   ("," . "ယ")
+   ("&" . "ရ")
+   ("v" . "လ")
+   ("W" . "ဝ")
+   ("o" . "သ")
+   ("O" . "ဿ")
+   ("[" . "ဟ")
+   ("V" . "ဠ")))
+
+(defconst myanmar-independent-vowels
+ '(
+   ("t" . "အ")
+   ("E" . "ဣ")
+   ("T" . "ဤ")
+   ("U" . "ဥ")
+   ("M" . "ဦ")
+   ("{" . "ဧ")
+   ("]" . "ဩ")
+   ("}" . "ဪ")))
+
+(defconst myanmar-dependent-vowels
+ '(
+   ("g" . "ါ")
+   ("m" . "ာ")
+   ("d" . "ိ")
+   ("D" . "ီ")
+   ("k" . "ု")
+   ("l" . "ူ")
+   ("a" . "ေ")
+   ("J" . "ဲ")))
+
+(defconst myanmar-various-signs
+ '(
+   ("H" . "ံ")
+   ("h" . "့")
+   (";" . "း")
+   ("F" . "္")
+   ("f" . "်")
+   ("Y" . "၌")
+   ("I" . "၍")
+   ("R" . "၎င်း")
+   ("\\" . "၏")))
+
+(defconst myanmar-consonant-signs
+ '(
+   ("s" . "ျ")
+   ("j" . "ြ")
+   ("G" . "ွ")
+   ("S" . "ှ")))
+
+(defconst myanmar-digits
+ '(
+   ("0" . "၀")
+   ("1" . "၁")
+   ("2" . "၂")
+   ("3" . "၃")
+   ("4" . "၄")
+   ("5" . "၅")
+   ("6" . "၆")
+   ("7" . "၇")
+   ("8" . "၈")
+   ("9" . "၉")))
+
+(defconst myanmar-punctuations
+ '(
+   ("?" . "၊")
+   ("/" . "။")))
+
+(defconst myanmar-custom-rules
+ '(
+   ("^" . "/")
+   ("_" . "×")
+   ("@" . "ဏ္ဍ")
+   ("Hk" . "ုံ")
+   ("fh" . "့်")
+   ("ps" . "ဈ")
+   ("oj" . "ဩ")
+   ("ojamf" . "ဪ")
+   ))
+
+;; Rules Generator
+(defun generate-rules(lists)
+  (let (rules)
+    (while lists
+      (quail-defrule (car (car lists)) (vector (cdr (car lists))))
+      (setq lists (cdr lists)))
+    ))
+
+;; Generate Rules
+;; Consonants
+(generate-rules myanmar-consonants)
+
+;; Independent Vowels
+(generate-rules myanmar-independent-vowels)
+
+;; Dependent Vowels
+(generate-rules myanmar-dependent-vowels)
+
+;; Various Signs
+(generate-rules myanmar-various-signs)
+
+;; Consonant Signs
+(generate-rules myanmar-consonant-signs)
+
+;; Digits
+(generate-rules myanmar-digits)
+
+;; Punctuations
+(generate-rules myanmar-punctuations)
+
+;; Custom Rules
+(generate-rules myanmar-custom-rules)
