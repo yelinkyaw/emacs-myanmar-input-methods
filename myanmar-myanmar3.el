@@ -157,7 +157,6 @@
 (defconst myanmar-custom-rules
  '(
    ("Hk" . "ုံ")
-   ("fh" . "့်")
    ("ps" . "ဈ")
    ("oj" . "ဩ")
    ("ojamf" . "ဪ")
