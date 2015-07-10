@@ -58,118 +58,183 @@
 
 (defconst myanmar-consonants
  '(
-   ("u" . "က")
-   ("c" . "ခ")
-   ("*" . "ဂ")
-   ("C" . "ဃ")
-   ("i" . "င")
-   ("p" . "စ")
-   ("q" . "ဆ")
-   ("Z" . "ဇ")
-   ("Q" . "ဈ")
-   ("n" . "ည")
-   ("N" . "ဉ")
-   ("#" . "ဋ")
-   ("X" . "ဌ")
-   ("!" . "ဍ")
-   ("~" . "ဎ")
-   ("P" . "ဏ")
-   ("w" . "တ")
-   ("x" . "ထ")
-   ("K" . "ဒ")
-   ("L" . "ဓ")
-   ("e" . "န")
-   ("y" . "ပ")
-   ("z" . "ဖ")
-   ("A" . "ဗ")
-   ("b" . "ဘ")
-   ("r" . "မ")
-   ("," . "ယ")
-   ("&" . "ရ")
-   ("v" . "လ")
-   ("W" . "ဝ")
-   ("o" . "သ")
-   ("O" . "ဿ")
-   ("[" . "ဟ")
-   ("V" . "ဠ")))
+   ("က" . "u")
+   ("ခ" . "c")
+   ("ဂ" . "*")
+   ("ဃ" . "C")
+   ("င" . "i")
+   ("စ" . "p")
+   ("ဆ" . "q")
+   ("ဇ" . "Z")
+   ("ဈ" . "Q")
+   ("ည" . "n")
+   ("ဉ" . "N")
+   ("ဋ" . "#")
+   ("ဌ" . "X")
+   ("ဍ" . "!")
+   ("ဎ" . "~")
+   ("ဏ" . "P")
+   ("တ" . "w")
+   ("ထ" . "x")
+   ("ဒ" . "K")
+   ("ဓ" . "L")
+   ("န" . "e")
+   ("ပ" . "y")
+   ("ဖ" . "z")
+   ("ဗ" . "A")
+   ("ဘ" . "b")
+   ("မ" . "r")
+   ("ယ" . ",")
+   ("ရ" . "&")
+   ("လ" . "v")
+   ("ဝ" . "W")
+   ("သ" . "o")
+   ("ဿ" . "O")
+   ("ဟ" . "[")
+   ("ဠ" . "V")
+   ("အ" . "t")))
 
 (defconst myanmar-independent-vowels
  '(
-   ("t" . "အ")
-   ("E" . "ဣ")
-   ("T" . "ဤ")
-   ("U" . "ဥ")
-   ("M" . "ဦ")
-   ("{" . "ဧ")
-   ("]" . "ဩ")
-   ("}" . "ဪ")))
+   ("အ" . "t")
+   ("ဣ" . "E")
+   ("ဤ" . "T")
+   ("ဥ" . "U")
+   ("ဦ" . "M")
+   ("ဧ" . "{")
+   ("ဩ" . "]")
+   ("ဪ" . "}")))
 
 (defconst myanmar-dependent-vowels
  '(
-   ("g" . "ါ")
-   ("m" . "ာ")
-   ("d" . "ိ")
-   ("D" . "ီ")
-   ("k" . "ု")
-   ("l" . "ူ")
-   ("a" . "ေ")
-   ("J" . "ဲ")))
+   ("ါ" . "g")
+   ("ာ" . "m")
+   ("ိ" . "d")
+   ("ီ" . "D")
+   ("ု" . "k")
+   ("ူ" . "l")
+   ("ေ" . "a")
+   ("ဲ" . "J")))
 
 (defconst myanmar-various-signs
  '(
-   ("H" . "ံ")
-   ("h" . "့")
-   (";" . "း")
-   ("F" . "္")
-   ("f" . "်")
-   ("Y" . "၌")
-   ("I" . "၍")
-   ("R" . "၎င်း")
-   ("\\" . "၏")))
+   ("ံ" . "H")
+   ("့" . "h")
+   ("း" . ";")
+   ("္" . "F")
+   ("်" . "f")
+   ("၌" . "Y")
+   ("၍" . "I")
+   ("၎င်း" . "R")
+   ("၏" . "\\")))
 
 (defconst myanmar-consonant-signs
  '(
-   ("s" . "ျ")
-   ("j" . "ြ")
-   ("G" . "ွ")
-   ("S" . "ှ")))
+   ("ျ" . "s")
+   ("ြ" . "j")
+   ("ွ" . "G")
+   ("ှ" . "S")))
 
 (defconst myanmar-digits
  '(
-   ("0" . "၀")
-   ("1" . "၁")
-   ("2" . "၂")
-   ("3" . "၃")
-   ("4" . "၄")
-   ("5" . "၅")
-   ("6" . "၆")
-   ("7" . "၇")
-   ("8" . "၈")
-   ("9" . "၉")))
+   ("၀" . "0")
+   ("၁" . "1")
+   ("၂" . "2")
+   ("၃" . "3")
+   ("၄" . "4")
+   ("၅" . "5")
+   ("၆" . "6")
+   ("၇" . "7")
+   ("၈" . "8")
+   ("၉" . "9")))
 
 (defconst myanmar-punctuations
  '(
-   ("?" . "၊")
-   ("/" . "။")))
+   ("၊" . "?")
+   ("။" . "/")))
 
 (defconst myanmar-custom-rules
  '(
-   ("^" . "/")
-   ("_" . "×")
-   ("@" . "ဏ္ဍ")
-   ("Hk" . "ုံ")
-   ("ps" . "ဈ")
-   ("oj" . "ဩ")
-   ("ojamf" . "ဪ")
+   ("/" . "^")
+   ("×" . "_")
+   ("ဏ္ဍ" . "@")
+   ("ုံ" . "Hk")
+   ("ဈ" . "ps")
+   ("ဩ" . "oj")
+   ("ဪ" . "aojmf")
    ))
+
+;; Get Character Item from Myanmar Characters
+(defun get-character-item(key)
+  (if (assoc key myanmar-consonants)
+      (assoc key myanmar-consonants)
+    (if (assoc key myanmar-independent-vowels)
+	(assoc key myanmar-independent-vowels)
+      (if (assoc key myanmar-dependent-vowels)
+	  (assoc key myanmar-dependent-vowels)
+	(if (assoc key myanmar-various-signs)
+	    (assoc key myanmar-various-signs)
+	  (if (assoc key myanmar-consonant-signs)
+	      (assoc key myanmar-consonant-signs)
+	    (if (assoc key myanmar-digits)
+		(assoc key myanmar-digits)
+	      (if (assoc key myanmar-punctuations)
+		  (assoc key myanmar-punctuations)
+		nil))))))))
+
+;; Custom Pre to Post Rules Generator
+(defun create-pre-to-post-custom-rules(lists pre post)
+  ;;Generate Prefix String
+  (setq pre_key "")
+  (setq pre_value "")
+  (dotimes (i (length pre))
+    (setq char (aref pre i))
+    (setq item (get-character-item char))
+    (if item
+	(progn
+	  (setq pre_key (concat pre_key (car item)))
+	  (setq pre_value (concat pre_value (cdr item))))))
+  
+  ;;Generate Postfix String
+  (setq post_key "")
+  (setq post_value "")
+  (dotimes (i (length post))
+    (setq char (aref post i))
+    (setq item (get-character-item char))
+    (if item
+	(progn
+	  (setq post_key (concat post_key (car item)))
+	  (setq post_value (concat post_value (cdr item))))))
+
+  ;;Create Rules
+  (let (rules)
+    (while lists
+      ;; Get Item
+      (setq item (car lists))
+      (setq key (car item))
+      (setq value (cdr item))
+      
+      ;; Set Prefix and Postfix
+      (setq key (concat key post_key pre_key))
+      (setq value (concat pre_value value post_value))
+
+      ;; Create Rules Item
+      (add-to-list 'rules `(,key . ,value))
+      (setq lists (cdr lists))
+      )
+    rules
+    )
+  )
 
 ;; Rules Generator
 (defun generate-rules(lists)
-  (let (rules)
-    (while lists
-      (quail-defrule (car (car lists)) (vector (cdr (car lists))))
-      (setq lists (cdr lists)))
-    ))
+  (while lists
+    (setq item (car lists))
+    (setq key (car item))
+    (setq value (cdr item))
+    (quail-defrule value (vector key))
+    (setq lists (cdr lists)))
+  )
 
 ;; Generate Rules
 ;; Consonants
@@ -192,6 +257,42 @@
 
 ;; Punctuations
 (generate-rules myanmar-punctuations)
+
+;; Create Custom Rules for "ေ + consonant"
+(generate-rules (create-pre-to-post-custom-rules myanmar-consonants ["ေ"] []))
+
+;; Create Custom Rules for "ေ + consonant + ျ"
+(generate-rules (create-pre-to-post-custom-rules myanmar-consonants ["ေ"] ["ျ"]))
+
+;; Create Custom Rules for "ေ + consonant + ြ"
+(generate-rules (create-pre-to-post-custom-rules myanmar-consonants ["ေ"] ["ြ"]))
+
+;; Create Custom Rules for "ေ + consonant + ွ"
+(generate-rules (create-pre-to-post-custom-rules myanmar-consonants ["ေ"] ["ွ"]))
+
+;; Create Custom Rules for "ေ + consonant + ှ"
+(generate-rules (create-pre-to-post-custom-rules myanmar-consonants ["ေ"] ["ှ"]))
+
+;; Create Custom Rules for "ေ + consonant + ျ + ွ"
+(generate-rules (create-pre-to-post-custom-rules myanmar-consonants ["ေ"] ["ျ" "ွ"]))
+
+;; Create Custom Rules for "ေ + consonant + ြ + ွ"
+(generate-rules (create-pre-to-post-custom-rules myanmar-consonants ["ေ"] ["ြ" "ွ"]))
+
+;; Create Custom Rules for "ေ + consonant + ျ + ှ"
+(generate-rules (create-pre-to-post-custom-rules myanmar-consonants ["ေ"] ["ျ" "ှ"]))
+
+;; Create Custom Rules for "ေ + consonant + ြ + ှ"
+(generate-rules (create-pre-to-post-custom-rules myanmar-consonants ["ေ"] ["ြ" "ှ"]))
+
+;; Create Custom Rules for "ေ + consonant + ွ + ှ"
+(generate-rules (create-pre-to-post-custom-rules myanmar-consonants ["ေ"] ["ွ" "ှ"]))
+
+;; Create Custom Rules for "ေ + consonant + ျ + ွ + ှ"
+(generate-rules (create-pre-to-post-custom-rules myanmar-consonants ["ေ"] ["ျ" "ွ" "ှ"]))
+
+;; Create Custom Rules for "ေ + consonant + ြ + ွ + ှ"
+(generate-rules (create-pre-to-post-custom-rules myanmar-consonants ["ေ"] ["ြ" "ွ" "ှ"]))
 
 ;; Custom Rules
 (generate-rules myanmar-custom-rules)
