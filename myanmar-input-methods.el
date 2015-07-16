@@ -24,18 +24,18 @@
 
 ;;; Commentary:
 
-;; This is an Emacs input methods for Myanmar
+;; Provides Emacs input methods for Myanmar
 
 ;;; Installation:
 
 ;; To install, just drop this file into a directory in your
 ;; `load-path' and (optionally) byte-compile it. And add:
 ;;
-;;    (require 'myanmar)
+;;    (require 'myanmar-input-methods)
 ;;
 ;; to your .emacs file.
 
-(provide 'myanmar)
+(provide 'myanmar-input-methods)
 (require 'quail)
 
 ;; Get Character Item from Characters List
@@ -489,3 +489,5 @@
 
 ;; Custom Rules
 (generate-rules myanmar3-custom-rules)
+
+;;; myanmar-input-methods.el ends here
