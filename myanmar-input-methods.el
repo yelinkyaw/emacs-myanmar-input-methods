@@ -1,4 +1,4 @@
-﻿;;; myanmar-input-methods.el --- Emacs Input Method for Myanmar
+;;; myanmar-input-methods.el --- Emacs Input Method for Myanmar
 
 ;; Copyright (C) 2015 Ye Lin Kyaw
 ;; Author: Ye Lin Kyaw <yelinkyaw@gmail.com>
