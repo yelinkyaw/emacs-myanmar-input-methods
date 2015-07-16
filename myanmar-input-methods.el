@@ -39,21 +39,21 @@
 (require 'quail)
 
 ;; Get Character Item from Characters List
-(defun get-character-item(key character-lists)
+(defun myanmar-input-methods-get-character-item(key character-lists)
   (if (car character-lists)
       (if (assoc key (car character-lists))
 	  (assoc key (car character-lists))
-	(get-character-item key (cdr character-lists)))
+	(myanmar-input-methods-get-character-item key (cdr character-lists)))
     nil))
 
 ;; Custom Pre to Post Rules Generator
-(defun create-pre-to-post-custom-rules(lists pre post)
+(defun myanmar-input-methods-create-pre-to-post-custom-rules(lists pre post character-lists)
   ;;Generate Prefix String
   (setq pre_key "")
   (setq pre_value "")
   (dotimes (i (length pre))
     (setq char (aref pre i))
-    (setq item (get-character-item char myansan-characters))
+    (setq item (myanmar-input-methods-get-character-item char character-lists))
     (if item
 	(progn
 	  (setq pre_key (concat pre_key (car item)))
@@ -64,7 +64,7 @@
   (setq post_value "")
   (dotimes (i (length post))
     (setq char (aref post i))
-    (setq item (get-character-item char myansan-characters))
+    (setq item (myanmar-input-methods-get-character-item char character-lists))
     (if item
 	(progn
 	  (setq post_key (concat post_key (car item)))
@@ -91,7 +91,7 @@
   )
 
 ;; Rules Generator
-(defun generate-rules(lists)
+(defun myanmar-input-methods-generate-rules(lists)
   (while lists
     (setq item (car lists))
     (setq key (car item))
@@ -120,7 +120,7 @@
  t
  )
 
-(defconst myansan-consonants
+(defconst myanmar-input-methods-myansan-consonants
  '(
    ("က" . "u")
    ("ခ" . "c")
@@ -158,7 +158,7 @@
    ("ဠ" . "V")
    ("အ" . "t")))
 
-(defconst myansan-independent-vowels
+(defconst myanmar-input-methods-myansan-independent-vowels
  '(
    ("အ" . "t")
    ("ဣ" . "E")
@@ -169,7 +169,7 @@
    ("ဩ" . "]")
    ("ဪ" . "}")))
 
-(defconst myansan-dependent-vowels
+(defconst myanmar-input-methods-myansan-dependent-vowels
  '(
    ("ါ" . "g")
    ("ာ" . "m")
@@ -180,7 +180,7 @@
    ("ေ" . "a")
    ("ဲ" . "J")))
 
-(defconst myansan-various-signs
+(defconst myanmar-input-methods-myansan-various-signs
  '(
    ("ံ" . "H")
    ("့" . "h")
@@ -192,14 +192,14 @@
    ("၎င်း" . "R")
    ("၏" . "\\")))
 
-(defconst myansan-consonant-signs
+(defconst myanmar-input-methods-myansan-consonant-signs
  '(
    ("ျ" . "s")
    ("ြ" . "j")
    ("ွ" . "G")
    ("ှ" . "S")))
 
-(defconst myansan-digits
+(defconst myanmar-input-methods-myansan-digits
  '(
    ("၀" . "0")
    ("၁" . "1")
@@ -212,12 +212,12 @@
    ("၈" . "8")
    ("၉" . "9")))
 
-(defconst myansan-punctuations
+(defconst myanmar-input-methods-myansan-punctuations
  '(
    ("၊" . "?")
    ("။" . "/")))
 
-(defconst myansan-custom-rules
+(defconst myanmar-input-methods-myansan-custom-rules
  '(
    ("" . "B")
    ("/" . "^")
@@ -229,78 +229,76 @@
    ("ဪ" . "aojmf")
    ))
 
-(defconst myansan-characters
-  `(,myansan-consonants
-    ,myansan-independent-vowels
-    ,myansan-dependent-vowels
-    ,myansan-various-signs
-    ,myansan-consonant-signs
-    ,myansan-digits
-    ,myansan-punctuations)
+(defconst myanmar-input-methods-myansan-characters
+  `(,myanmar-input-methods-myansan-consonants
+    ,myanmar-input-methods-myansan-independent-vowels
+    ,myanmar-input-methods-myansan-dependent-vowels
+    ,myanmar-input-methods-myansan-various-signs
+    ,myanmar-input-methods-myansan-consonant-signs
+    ,myanmar-input-methods-myansan-digits
+    ,myanmar-input-methods-myansan-punctuations)
   )
-
-
 
 ;; Generate Rules
 ;; Consonants
-(generate-rules myansan-consonants)
+(myanmar-input-methods-generate-rules myanmar-input-methods-myansan-consonants)
 
 ;; Independent Vowels
-(generate-rules myansan-independent-vowels)
+(myanmar-input-methods-generate-rules myanmar-input-methods-myansan-independent-vowels)
 
 ;; Dependent Vowels
-(generate-rules myansan-dependent-vowels)
+(myanmar-input-methods-generate-rules myanmar-input-methods-myansan-dependent-vowels)
 
 ;; Various Signs
-(generate-rules myansan-various-signs)
+(myanmar-input-methods-generate-rules myanmar-input-methods-myansan-various-signs)
 
 ;; Consonant Signs
-(generate-rules myansan-consonant-signs)
+(myanmar-input-methods-generate-rules myanmar-input-methods-myansan-consonant-signs)
 
 ;; Digits
-(generate-rules myansan-digits)
+(myanmar-input-methods-generate-rules myanmar-input-methods-myansan-digits)
 
 ;; Punctuations
-(generate-rules myansan-punctuations)
+(myanmar-input-methods-generate-rules myanmar-input-methods-myansan-punctuations)
 
 ;; Create Custom Rules for "ေ + consonant"
-(generate-rules (create-pre-to-post-custom-rules myansan-consonants ["ေ"] []))
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-myansan-consonants ["ေ"] [] myanmar-input-methods-myansan-characters))
 
 ;; Create Custom Rules for "ေ + consonant + ျ"
-(generate-rules (create-pre-to-post-custom-rules myansan-consonants ["ေ"] ["ျ"]))
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-myansan-consonants ["ေ"] ["ျ"] myanmar-input-methods-myansan-characters))
 
 ;; Create Custom Rules for "ေ + consonant + ြ"
-(generate-rules (create-pre-to-post-custom-rules myansan-consonants ["ေ"] ["ြ"]))
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-myansan-consonants ["ေ"] ["ြ"] myanmar-input-methods-myansan-characters))
 
 ;; Create Custom Rules for "ေ + consonant + ွ"
-(generate-rules (create-pre-to-post-custom-rules myansan-consonants ["ေ"] ["ွ"]))
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-myansan-consonants ["ေ"] ["ွ"] myanmar-input-methods-myansan-characters))
 
 ;; Create Custom Rules for "ေ + consonant + ှ"
-(generate-rules (create-pre-to-post-custom-rules myansan-consonants ["ေ"] ["ှ"]))
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-myansan-consonants ["ေ"] ["ှ"] myanmar-input-methods-myansan-characters))
 
 ;; Create Custom Rules for "ေ + consonant + ျ + ွ"
-(generate-rules (create-pre-to-post-custom-rules myansan-consonants ["ေ"] ["ျ" "ွ"]))
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-myansan-consonants ["ေ"] ["ျ" "ွ"] myanmar-input-methods-myansan-characters))
 
 ;; Create Custom Rules for "ေ + consonant + ြ + ွ"
-(generate-rules (create-pre-to-post-custom-rules myansan-consonants ["ေ"] ["ြ" "ွ"]))
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-myansan-consonants ["ေ"] ["ြ" "ွ"] myanmar-input-methods-myansan-characters))
 
 ;; Create Custom Rules for "ေ + consonant + ျ + ှ"
-(generate-rules (create-pre-to-post-custom-rules myansan-consonants ["ေ"] ["ျ" "ှ"]))
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-myansan-consonants ["ေ"] ["ျ" "ှ"] myanmar-input-methods-myansan-characters))
 
 ;; Create Custom Rules for "ေ + consonant + ြ + ှ"
-(generate-rules (create-pre-to-post-custom-rules myansan-consonants ["ေ"] ["ြ" "ှ"]))
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-myansan-consonants ["ေ"] ["ြ" "ှ"] myanmar-input-methods-myansan-characters))
 
 ;; Create Custom Rules for "ေ + consonant + ွ + ှ"
-(generate-rules (create-pre-to-post-custom-rules myansan-consonants ["ေ"] ["ွ" "ှ"]))
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-myansan-consonants ["ေ"] ["ွ" "ှ"] myanmar-input-methods-myansan-characters))
 
 ;; Create Custom Rules for "ေ + consonant + ျ + ွ + ှ"
-(generate-rules (create-pre-to-post-custom-rules myansan-consonants ["ေ"] ["ျ" "ွ" "ှ"]))
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-myansan-consonants ["ေ"] ["ျ" "ွ" "ှ"] myanmar-input-methods-myansan-characters))
 
 ;; Create Custom Rules for "ေ + consonant + ြ + ွ + ှ"
-(generate-rules (create-pre-to-post-custom-rules myansan-consonants ["ေ"] ["ြ" "ွ" "ှ"]))
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-myansan-consonants ["ေ"] ["ြ" "ွ" "ှ"] myanmar-input-methods-myansan-characters))
 
 ;; Custom Rules
-(generate-rules myansan-custom-rules)
+(myanmar-input-methods-generate-rules myanmar-input-methods-myansan-custom-rules)
 
 ;; Myanmar3 Layout
 (quail-define-package
@@ -323,7 +321,7 @@
  )
 
 
-(defconst myanmar3-consonants
+(defconst myanmar-input-methods-myanmar3-consonants
  '(
    ("က" . "u")
    ("ခ" . "c")
@@ -362,7 +360,7 @@
    ("ဠ" . "V")
    ("အ" . "t")))
 
-(defconst myanmar3-independent-vowels
+(defconst myanmar-input-methods-myanmar3-independent-vowels
  '(
    ("အ" . "t")
    ("ဣ" . "E")
@@ -373,7 +371,7 @@
    ("ဩ" . "]")
    ("ဪ" . "}")))
 
-(defconst myanmar3-dependent-vowels
+(defconst myanmar-input-methods-myanmar3-dependent-vowels
  '(
    ("ါ" . "g")
    ("ာ" . "m")
@@ -384,7 +382,7 @@
    ("ေ" . "a")
    ("ဲ" . "J")))
 
-(defconst myanmar3-various-signs
+(defconst myanmar-input-methods-myanmar3-various-signs
  '(
    ("ံ" . "H")
    ("့" . "h")
@@ -396,14 +394,14 @@
    ("၎င်း" . "R")
    ("၏" . "\\")))
 
-(defconst myanmar3-consonant-signs
+(defconst myanmar-input-methods-myanmar3-consonant-signs
  '(
    ("ျ" . "s")
    ("ြ" . "j")
    ("ွ" . "G")
    ("ှ" . "S")))
 
-(defconst myanmar3-digits
+(defconst myanmar-input-methods-myanmar3-digits
  '(
    ("၀" . "0")
    ("၁" . "1")
@@ -416,78 +414,88 @@
    ("၈" . "8")
    ("၉" . "9")))
 
-(defconst myanmar3-punctuations
+(defconst myanmar-input-methods-myanmar3-punctuations
  '(
    ("၊" . "<")
    ("။" . ">")))
 
-(defconst myanmar3-custom-rules
+(defconst myanmar-input-methods-myanmar3-custom-rules
  '(
    ("ုံ" . "Hk")
    ("ဈ" . "ps")
    ("ဩ" . "oj")
    ("ဪ" . "ojamf")
    ))
+   
+(defconst myanmar-input-methods-myanmar3-characters
+  `(,myanmar-input-methods-myanmar3-consonants
+    ,myanmar-input-methods-myanmar3-independent-vowels
+    ,myanmar-input-methods-myanmar3-dependent-vowels
+    ,myanmar-input-methods-myanmar3-various-signs
+    ,myanmar-input-methods-myanmar3-consonant-signs
+    ,myanmar-input-methods-myanmar3-digits
+    ,myanmar-input-methods-myanmar3-punctuations)
+  )
 
 ;; Generate Rules
 ;; Consonants
-(generate-rules myanmar3-consonants)
+(myanmar-input-methods-generate-rules myanmar-input-methods-myanmar3-consonants)
 
 ;; Independent Vowels
-(generate-rules myanmar3-independent-vowels)
+(myanmar-input-methods-generate-rules myanmar-input-methods-myanmar3-independent-vowels)
 
 ;; Dependent Vowels
-(generate-rules myanmar3-dependent-vowels)
+(myanmar-input-methods-generate-rules myanmar-input-methods-myanmar3-dependent-vowels)
 
 ;; Various Signs
-(generate-rules myanmar3-various-signs)
+(myanmar-input-methods-generate-rules myanmar-input-methods-myanmar3-various-signs)
 
 ;; Consonant Signs
-(generate-rules myanmar3-consonant-signs)
+(myanmar-input-methods-generate-rules myanmar-input-methods-myanmar3-consonant-signs)
 
 ;; Digits
-(generate-rules myanmar3-digits)
+(myanmar-input-methods-generate-rules myanmar-input-methods-myanmar3-digits)
 
 ;; Punctuations
-(generate-rules myanmar3-punctuations)
+(myanmar-input-methods-generate-rules myanmar-input-methods-myanmar3-punctuations)
 
 ;; Create Custom Rules for "ေ + consonant"
-(generate-rules (create-pre-to-post-custom-rules myanmar3-consonants ["ေ"] []))
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-myanmar3-consonants ["ေ"] [] myanmar-input-methods-myanmar3-characters))
 
 ;; Create Custom Rules for "ေ + consonant + ျ"
-(generate-rules (create-pre-to-post-custom-rules myanmar3-consonants ["ေ"] ["ျ"]))
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-myanmar3-consonants ["ေ"] ["ျ"] myanmar-input-methods-myanmar3-characters))
 
 ;; Create Custom Rules for "ေ + consonant + ြ"
-(generate-rules (create-pre-to-post-custom-rules myanmar3-consonants ["ေ"] ["ြ"]))
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-myanmar3-consonants ["ေ"] ["ြ"] myanmar-input-methods-myanmar3-characters))
 
 ;; Create Custom Rules for "ေ + consonant + ွ"
-(generate-rules (create-pre-to-post-custom-rules myanmar3-consonants ["ေ"] ["ွ"]))
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-myanmar3-consonants ["ေ"] ["ွ"] myanmar-input-methods-myanmar3-characters))
 
 ;; Create Custom Rules for "ေ + consonant + ှ"
-(generate-rules (create-pre-to-post-custom-rules myanmar3-consonants ["ေ"] ["ှ"]))
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-myanmar3-consonants ["ေ"] ["ှ"] myanmar-input-methods-myanmar3-characters))
 
 ;; Create Custom Rules for "ေ + consonant + ျ + ွ"
-(generate-rules (create-pre-to-post-custom-rules myanmar3-consonants ["ေ"] ["ျ" "ွ"]))
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-myanmar3-consonants ["ေ"] ["ျ" "ွ"] myanmar-input-methods-myanmar3-characters))
 
 ;; Create Custom Rules for "ေ + consonant + ြ + ွ"
-(generate-rules (create-pre-to-post-custom-rules myanmar3-consonants ["ေ"] ["ြ" "ွ"]))
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-myanmar3-consonants ["ေ"] ["ြ" "ွ"] myanmar-input-methods-myanmar3-characters))
 
 ;; Create Custom Rules for "ေ + consonant + ျ + ှ"
-(generate-rules (create-pre-to-post-custom-rules myanmar3-consonants ["ေ"] ["ျ" "ှ"]))
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-myanmar3-consonants ["ေ"] ["ျ" "ှ"] myanmar-input-methods-myanmar3-characters))
 
 ;; Create Custom Rules for "ေ + consonant + ြ + ှ"
-(generate-rules (create-pre-to-post-custom-rules myanmar3-consonants ["ေ"] ["ြ" "ှ"]))
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-myanmar3-consonants ["ေ"] ["ြ" "ှ"] myanmar-input-methods-myanmar3-characters))
 
 ;; Create Custom Rules for "ေ + consonant + ွ + ှ"
-(generate-rules (create-pre-to-post-custom-rules myanmar3-consonants ["ေ"] ["ွ" "ှ"]))
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-myanmar3-consonants ["ေ"] ["ွ" "ှ"] myanmar-input-methods-myanmar3-characters))
 
 ;; Create Custom Rules for "ေ + consonant + ျ + ွ + ှ"
-(generate-rules (create-pre-to-post-custom-rules myanmar3-consonants ["ေ"] ["ျ" "ွ" "ှ"]))
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-myanmar3-consonants ["ေ"] ["ျ" "ွ" "ှ"] myanmar-input-methods-myanmar3-characters))
 
 ;; Create Custom Rules for "ေ + consonant + ြ + ွ + ှ"
-(generate-rules (create-pre-to-post-custom-rules myanmar3-consonants ["ေ"] ["ြ" "ွ" "ှ"]))
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-myanmar3-consonants ["ေ"] ["ြ" "ွ" "ှ"] myanmar-input-methods-myanmar3-characters))
 
 ;; Custom Rules
-(generate-rules myanmar3-custom-rules)
+(myanmar-input-methods-generate-rules myanmar-input-methods-myanmar3-custom-rules)
 
 ;;; myanmar-input-methods.el ends here
