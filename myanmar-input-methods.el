@@ -498,4 +498,207 @@
 ;; Custom Rules
 (myanmar-input-methods-generate-rules myanmar-input-methods-myanmar3-custom-rules)
 
+;; Yunghkio Layout
+(quail-define-package
+ "myanmar-yunghkio"
+ "Myanmar"
+ "ယွန်း"
+ nil
+ "Yunghkio Keyboard Layout"
+ nil
+ t
+ t
+ t
+ t
+ nil
+ nil
+ nil
+ nil
+ nil
+ t
+ )
+
+(defconst myanmar-input-methods-yunghkio-consonants
+ '(
+   ("ၵ" . "u")
+   ("ၶ" . "c")
+   ("ၷ" . "U")
+   ("င" . "i")
+   ("ၸ" . "q")
+   ("သ" . "o")
+   ("ၺ" . "n")
+   ("ၹ" . "Q")
+   ("တ" . "w")
+   ("ထ" . "x")
+   ("ၻ" . "W")
+   ("ၼ" . "e")
+   ("ပ" . "y")
+   ("ၽ" . "z")
+   ("ၾ" . "Z")
+   ("ၿ" . "Y")
+   ("မ" . "r")
+   ("ယ" . "N")
+   ("ရ" . "&")
+   ("လ" . "v")
+   ("ဝ" . "O")
+   ("ႀ" . "P")
+   ("ဂှ" . "P")
+   ("ဢ" . "t")))
+
+(defconst myanmar-input-methods-yunghkio-dependent-vowels
+ '(
+   ("ႃ" . "M")
+   ("ၢ" . "m")
+   ("ိ" . "d")
+   ("ီ" . "D")
+   ("ု" . "k")
+   ("ူ" . "l")
+   ("ေ" . "a")
+   ("ဵ" . "A")
+   ("ႄ" . "s")
+   ("ႅ" . "S")))
+
+(defconst myanmar-input-methods-yunghkio-various-signs
+ '(
+   ("ံ" . "F")
+   ("့" . "H")
+   ("း" . ";")
+   ("ႇ" . "b")
+   ("ႆ" . "B")
+   ("ႈ" . "j")
+   ("ႉ" . "h")
+   ("ႊ" . ":")
+   ("္" . "ff")
+   ("်" . "f")))
+
+(defconst myanmar-input-methods-yunghkio-consonant-signs
+ '(
+   ("ျ" . "K")
+   ("ြ" . "L")
+   ("ႂ" . "G")
+   ("ွ" . "g")))
+
+(defconst myanmar-input-methods-yunghkio-digits
+ '(
+   ("႐" . "0")
+   ("႑" . "1")
+   ("႒". "2")
+   ("႓" . "3")
+   ("႔" . "4")
+   ("႕" . "5")
+   ("႖" . "6")
+   ("႗" . "7")
+   ("႘" . "8")
+   ("႙" . "9")))
+
+(defconst myanmar-input-methods-yunghkio-punctuations
+ '(
+   ("၊" . "<")
+   ("။" . ">")))
+
+(defconst myanmar-input-methods-yunghkio-symbols
+ '(
+   ("႞" . "R")
+   ("႟" . "T")))
+
+(defconst myanmar-input-methods-yunghkio-custom-rules
+ '(
+   ("ႂ်" . "J")
+   ("ုံ" . "Fk")
+   ("◌" . "I")
+   ("" . "E")
+   ("" . "X")
+   ("" . "C")
+   ("" . "V")
+   ))
+   
+(defconst myanmar-input-methods-yunghkio-characters
+  `(,myanmar-input-methods-yunghkio-consonants
+    ,myanmar-input-methods-yunghkio-dependent-vowels
+    ,myanmar-input-methods-yunghkio-various-signs
+    ,myanmar-input-methods-yunghkio-consonant-signs
+    ,myanmar-input-methods-yunghkio-digits
+    ,myanmar-input-methods-yunghkio-symbols
+    ,myanmar-input-methods-yunghkio-punctuations)
+  )
+
+;; Generate Rules
+;; Consonants
+(myanmar-input-methods-generate-rules myanmar-input-methods-yunghkio-consonants)
+
+;; Dependent Vowels
+(myanmar-input-methods-generate-rules myanmar-input-methods-yunghkio-dependent-vowels)
+
+;; Various Signs
+(myanmar-input-methods-generate-rules myanmar-input-methods-yunghkio-various-signs)
+
+;; Consonant Signs
+(myanmar-input-methods-generate-rules myanmar-input-methods-yunghkio-consonant-signs)
+
+;; Digits
+(myanmar-input-methods-generate-rules myanmar-input-methods-yunghkio-digits)
+
+;; Symbols
+(myanmar-input-methods-generate-rules myanmar-input-methods-yunghkio-symbols)
+
+;; Punctuations
+(myanmar-input-methods-generate-rules myanmar-input-methods-yunghkio-punctuations)
+
+;; Create Custom Rules for "ေ + consonant"
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-yunghkio-consonants ["ေ"] [] myanmar-input-methods-yunghkio-characters))
+
+;; Create Custom Rules for "ေ + consonant + ျ"
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-yunghkio-consonants ["ေ"] ["ျ"] myanmar-input-methods-yunghkio-characters))
+
+;; Create Custom Rules for "ေ + consonant + ြ"
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-yunghkio-consonants ["ေ"] ["ြ"] myanmar-input-methods-yunghkio-characters))
+
+;; Create Custom Rules for "ေ + consonant + ွ"
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-yunghkio-consonants ["ေ"] ["ွ"] myanmar-input-methods-yunghkio-characters))
+
+;; Create Custom Rules for "ေ + consonant + ႂ"
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-yunghkio-consonants ["ေ"] ["ႂ"] myanmar-input-methods-yunghkio-characters))
+
+;; Create Custom Rules for "ေ + consonant + ျ + ွ"
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-yunghkio-consonants ["ေ"] ["ျ" "ွ"] myanmar-input-methods-yunghkio-characters))
+
+;; Create Custom Rules for "ေ + consonant + ျ + ႂ"
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-yunghkio-consonants ["ေ"] ["ျ" "ႂ"] myanmar-input-methods-yunghkio-characters))
+
+;; Create Custom Rules for "ေ + consonant + ြ + ွ"
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-yunghkio-consonants ["ေ"] ["ြ" "ွ"] myanmar-input-methods-yunghkio-characters))
+
+;; Create Custom Rules for "ေ + consonant + ြ + ႂ"
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-yunghkio-consonants ["ေ"] ["ြ" "ႂ"] myanmar-input-methods-yunghkio-characters))
+
+;; Create Custom Rules for "ႄ + consonant"
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-yunghkio-consonants ["ႄ"] [] myanmar-input-methods-yunghkio-characters))
+
+;; Create Custom Rules for "ႄ + consonant + ျ"
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-yunghkio-consonants ["ႄ"] ["ျ"] myanmar-input-methods-yunghkio-characters))
+
+;; Create Custom Rules for "ႄ + consonant + ြ"
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-yunghkio-consonants ["ႄ"] ["ြ"] myanmar-input-methods-yunghkio-characters))
+
+;; Create Custom Rules for "ႄ + consonant + ွ"
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-yunghkio-consonants ["ႄ"] ["ွ"] myanmar-input-methods-yunghkio-characters))
+
+;; Create Custom Rules for "ႄ + consonant + ႂ"
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-yunghkio-consonants ["ႄ"] ["ႂ"] myanmar-input-methods-yunghkio-characters))
+
+;; Create Custom Rules for "ႄ + consonant + ျ + ွ"
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-yunghkio-consonants ["ႄ"] ["ျ" "ွ"] myanmar-input-methods-yunghkio-characters))
+
+;; Create Custom Rules for "ႄ + consonant + ျ + ႂ"
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-yunghkio-consonants ["ႄ"] ["ျ" "ႂ"] myanmar-input-methods-yunghkio-characters))
+
+;; Create Custom Rules for "ႄ + consonant + ြ + ွ"
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-yunghkio-consonants ["ႄ"] ["ြ" "ွ"] myanmar-input-methods-yunghkio-characters))
+
+;; Create Custom Rules for "ႄ + consonant + ြ + ႂ"
+(myanmar-input-methods-generate-rules (myanmar-input-methods-create-pre-to-post-custom-rules myanmar-input-methods-yunghkio-consonants ["ႄ"] ["ြ" "ႂ"] myanmar-input-methods-yunghkio-characters))
+
+;; Custom Rules
+(myanmar-input-methods-generate-rules myanmar-input-methods-yunghkio-custom-rules)
+
 ;;; myanmar-input-methods.el ends here

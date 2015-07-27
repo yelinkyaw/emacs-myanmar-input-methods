@@ -4,6 +4,7 @@ This is the implementations of well know Myanmar Input Methods for Emacs. Those 
 ## Input Methods
 * Myanmar3 - (myanmar-myanmar3)
 * Myan San - (myanmar-myansan)
+* Yunghkio - (myanmar-yunghkio)
 
 ## Installation
 * Add `*.el` files to `load-path`
