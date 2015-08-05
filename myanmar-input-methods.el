@@ -35,7 +35,6 @@
 ;;
 ;; to your .emacs file.
 
-(provide 'myanmar-input-methods)
 (require 'quail)
 
 ;; Get Character Item from Characters List
@@ -700,5 +699,8 @@
 
 ;; Custom Rules
 (myanmar-input-methods-generate-rules myanmar-input-methods-yunghkio-custom-rules)
+
+
+(provide 'myanmar-input-methods)
 
 ;;; myanmar-input-methods.el ends here
